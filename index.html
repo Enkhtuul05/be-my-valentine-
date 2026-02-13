@@ -3,49 +3,114 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Be My Valentine</title>
+    <title>Valentine Letter</title>
     <style>
-        body { display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; background-color: #fce4ec; font-family: sans-serif; overflow: hidden; }
-        .container { text-align: center; width: 100%; }
-        img { width: 180px; border-radius: 15px; }
-        h1 { color: #d81b60; font-size: 1.8rem; margin: 20px 0; }
-        .buttons { position: relative; height: 100px; width: 100%; }
-        button { padding: 12px 25px; font-size: 1rem; border-radius: 20px; border: none; cursor: pointer; position: absolute; font-weight: bold; }
-        #yesBtn { background-color: #ff4081; color: white; left: 50%; transform: translateX(-110%); }
-        #noBtn { background-color: #757575; color: white; left: 50%; transform: translateX(10%); transition: 0.1s; }
+        body {
+            background-color: #fce4ec;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .window {
+            background-color: #fff;
+            border: 4px solid #ff8a80;
+            box-shadow: 8px 8px 0px #ff8a80;
+            width: 350px;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .header {
+            background-color: #ff8a80;
+            color: white;
+            padding: 5px;
+            margin: -20px -20px 20px -20px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .header span { margin-left: 10px; }
+        .controls { margin-right: 10px; }
+
+        img {
+            width: 150px;
+            image-rendering: pixelated;
+        }
+
+        h1 { font-size: 24px; color: #d81b60; }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+            position: relative;
+        }
+
+        button {
+            padding: 10px 25px;
+            font-size: 16px;
+            font-family: inherit;
+            border: 3px solid #000;
+            box-shadow: 4px 4px 0px #000;
+            cursor: pointer;
+            background: #fff;
+        }
+
+        #yesBtn { background-color: #ff8a80; color: white; }
+        #noBtn { position: absolute; left: 190px; }
+
+        .hearts {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
     </style>
 </head>
 <body>
-<div class="container">
-    <img id="mainGif" src="https://media.tenor.com/9v_mX_fclXIAAAAi/milk-and-mocha-bear-couple.gif">
-    <h1 id="question">Надад хайртай юу?</h1>
-    <div class="buttons">
-        <button id="yesBtn">Тийм</button>
-        <button id="noBtn">Үгүй</button>
+
+    <div class="window" id="letter">
+        <div class="header">
+            <span>LOVE</span>
+            <div class="controls">_ □ X</div>
+        </div>
+        < img id="mainGif" src="https://media.tenor.com/X-X0VvR7G04AAAAi/milk-and-mocha.gif" alt="Pixel Cat">
+        <h1 id="question">Надад хайртай юу?</h1>
+        <div class="buttons">
+            <button id="yesBtn">Тийм</button>
+            <button id="noBtn">Үгүй</button>
+        </div>
     </div>
-</div>
-<script>
-    const noBtn = document.getElementById('noBtn');
-    const yesBtn = document.getElementById('yesBtn');
-    const question = document.getElementById('question');
-    const mainGif = document.getElementById('mainGif');
-    function moveButton() {
-        const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
-        const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
-        noBtn.style.position = 'fixed';
-        noBtn.style.left = x + 'px';
-        noBtn.style.top = y + 'px';
-        noBtn.style.transform = 'none';
-    }
-    noBtn.addEventListener('touchstart', (e) => { e.preventDefault(); moveButton(); });
-    noBtn.addEventListener('mouseover', moveButton);
-    yesBtn.addEventListener('click', () => {
-        question.innerHTML = "Би ч бас чамд хайртай! ❤️";
-        mainGif.src = "https://media.tenor.com/X-X0VvR7G04AAAAi/milk-and-mocha.gif";
-        noBtn.style.display = 'none';
-        yesBtn.style.left = '50%';
-        yesBtn.style.transform = 'translateX(-50%)';
-    });
-</script>
+
+    <script>
+        const noBtn = document.getElementById('noBtn');
+        const yesBtn = document.getElementById('yesBtn');
+        const question = document.getElementById('question');
+        const mainGif = document.getElementById('mainGif');
+
+        function moveButton() {
+            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+            noBtn.style.position = 'fixed';
+            noBtn.style.left = x + 'px';
+            noBtn.style.top = y + 'px';
+        }
+
+        noBtn.addEventListener('touchstart', (e) => { e.preventDefault(); moveButton(); });
+        noBtn.addEventListener('mouseover', moveButton);
+
+        yesBtn.addEventListener('click', () => {
+            question.innerHTML = "Yippeee! ❤️<br><small>Уулзах газраа чатаар хэлье!</small>";
+            mainGif.src = "https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExOHpueXp6bmZ6bmZ6bmZ6bmZ6/l0HlVVXyP6W7V6W/giphy.gif";
+            noBtn.style.display = 'none';
+        });
+    </script>
 </body>
 </html>
